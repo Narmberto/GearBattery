@@ -5,20 +5,20 @@
   <!-- sources -->
   <g font-size="14">
     <rect x="30" y="70" width="270" height="62" rx="10" fill="#f6f5f3" stroke="#dcdcda"/>
-    <text x="46" y="96" fill="#1c1c1e" font-weight="700">Logitech HID++</text>
-    <text x="46" y="117" fill="#6b6b70" font-size="12.5">Lightspeed · Unifying · Bolt · USB · BLE</text>
+    <text x="46" y="96" fill="#1c1c1e" font-weight="700">Wireless USB receivers</text>
+    <text x="46" y="117" fill="#6b6b70" font-size="12.5">HID++ dongles · USB cable</text>
 
     <rect x="30" y="148" width="270" height="62" rx="10" fill="#f6f5f3" stroke="#dcdcda"/>
-    <text x="46" y="174" fill="#1c1c1e" font-weight="700">IORegistry</text>
-    <text x="46" y="195" fill="#6b6b70" font-size="12.5">BatteryPercent (Magic &amp; Bluetooth HID)</text>
+    <text x="46" y="174" fill="#1c1c1e" font-weight="700">Bluetooth devices</text>
+    <text x="46" y="195" fill="#6b6b70" font-size="12.5">mice · keyboards · trackpads</text>
 
     <rect x="30" y="226" width="270" height="62" rx="10" fill="#f6f5f3" stroke="#dcdcda"/>
-    <text x="46" y="252" fill="#1c1c1e" font-weight="700">Bluetooth report</text>
-    <text x="46" y="273" fill="#6b6b70" font-size="12.5">AirPods L/R/case · headphones</text>
+    <text x="46" y="252" fill="#1c1c1e" font-weight="700">Bluetooth audio</text>
+    <text x="46" y="273" fill="#6b6b70" font-size="12.5">earbuds L/R/case · headphones</text>
 
     <rect x="30" y="304" width="270" height="62" rx="10" fill="#f6f5f3" stroke="#dcdcda"/>
-    <text x="46" y="330" fill="#1c1c1e" font-weight="700">GameController</text>
-    <text x="46" y="351" fill="#6b6b70" font-size="12.5">PlayStation · Xbox · Switch Pro</text>
+    <text x="46" y="330" fill="#1c1c1e" font-weight="700">Game controllers</text>
+    <text x="46" y="351" fill="#6b6b70" font-size="12.5">any controller macOS supports</text>
   </g>
 
   <!-- arrows -->
@@ -45,6 +45,6 @@
   <text x="762" y="272" text-anchor="middle" font-size="12.5" fill="#6b6b70">menu bar, 24/7</text>
 
   <!-- events -->
-  <text x="450" y="395" text-anchor="middle" font-size="13" fill="#6b6b70">Events, not polling: USB / Bluetooth hotplug, receiver "mouse woke up" notices,</text>
+  <text x="450" y="395" text-anchor="middle" font-size="13" fill="#6b6b70">Events, not polling: USB / Bluetooth hotplug, "device woke up" notices,</text>
   <text x="450" y="413" text-anchor="middle" font-size="13" fill="#6b6b70">battery broadcasts and Mac wake-from-sleep all trigger an instant read.</text>
 </svg>

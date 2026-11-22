@@ -8,42 +8,45 @@
   <img alt="Apple Silicon and Intel" src="https://img.shields.io/badge/Apple%20Silicon%20%2B%20Intel-universal-444">
 </p>
 
-**GearBattery** is a small macOS menu bar app that always shows how much charge your wireless gear has left. For example, it tells you your G Pro mouse is at 46% before it dies in the middle of a game.
+**GearBattery** detects the battery-powered hardware connected to your Mac and keeps each device's charge level in the menu bar, all the time. Connect a wireless mouse, keyboard, headset or controller and it shows up on its own, e.g. `43%`. You don't set anything up and don't pick devices from a list.
 
 <p align="center">
   <img src="docs/menubar-light.png" alt="GearBattery in a light menu bar" width="520"><br>
   <img src="docs/menubar-dark.png" alt="GearBattery in a dark menu bar" width="520">
 </p>
 
-<sub>Left: a Logitech PRO X 2 that is asleep (dimmed, last known level). Middle: a keyboard at 12%; the item turns red when a device is low. Right: AirPods while charging.</sub>
+<sub>Left: a wireless mouse that is asleep (dimmed, last known level). Middle: a keyboard at 12%; the item turns red when a device is low. Right: earbuds while charging.</sub>
 
 ---
 
 ## Features
 
-- **Real hardware detection.** It reads the battery from the device itself; no guessing from a vendor app.
+- **Automatic hardware detection.** Every connected device that reports a battery is found and shown, by the name the device itself reports.
+- **Reads the real level.** The percentage comes from the device, not from an estimate.
 - **In the menu bar 24/7.** It starts at login and restarts itself if it ever crashes.
-- **Sleeping devices stay visible.** A wireless mouse that dozes off stays in the bar, dimmed, with its last known level.
+- **Plug and play.** Devices appear the moment they connect and disappear when removed.
+- **Sleeping devices stay visible.** A device that powers down to save battery stays in the bar, dimmed, with its last known level.
 - **Low-battery alert** at 15%, as a notification and a red menu bar item.
-- **Choose what's shown:** all devices, or pin just one (e.g. only your mouse).
+- **Choose what's shown:** all devices, or pin just one.
 - **Efficient:** event-driven, 0.0% CPU when idle.
 
-## Supported devices
+## What it detects
 
-| Type | Devices | How the battery is read |
-|---|---|---|
-| **Logitech** | G Pro, G Pro X Superlight 1/2, G502/G305 Lightspeed, MX Master/Anywhere, MX Keys, on **Lightspeed, Unifying or Bolt** receivers, USB cable, or Bluetooth | Logitech's HID++ 2.0 protocol |
-| **Bluetooth** | Apple Magic Mouse / Keyboard / Trackpad, most Bluetooth LE mice and keyboards | Battery level reported by macOS |
-| **Audio** | AirPods (left / right / case), Beats, Bluetooth headphones | macOS Bluetooth report |
-| **Controllers** | PlayStation, Xbox, Switch Pro, MFi | Apple's GameController framework |
+| Connection | Examples |
+|---|---|
+| **Bluetooth** | Mice, keyboards, trackpads |
+| **Bluetooth audio** | Earbuds (left / right / case), headphones, headsets |
+| **Wireless USB receivers** | Mice and keyboards on a USB dongle that uses the HID++ protocol |
+| **USB cable** | Wireless devices plugged in to charge |
+| **Game controllers** | Any controller macOS supports |
 
-> Razer, Corsair and SteelSeries wireless receivers use private protocols and aren't supported yet.
+A device has to report its battery level to macOS. A few gaming dongles use closed protocols that don't, so those can't be read yet.
 
 ## Install
 
 1. Download **`GearBattery-1.0.0.dmg`** from [**Releases**](https://github.com/Narmberto/GearBattery/releases/latest).
 2. Open it and double-click **Install GearBattery.pkg**.
-3. The cat appears in your menu bar. That's it.
+3. The cat appears in your menu bar, followed by your devices.
 
 > GearBattery is not notarized by Apple. If macOS says it "can't verify the developer", right-click the `.pkg` and choose **Open**, or allow it under **System Settings → Privacy & Security**.
 >
@@ -52,13 +55,13 @@
 ## How it works
 
 <p align="center">
-  <img src="docs/how-it-works.svg" alt="Four battery sources feed a battery monitor that updates the menu bar" width="820">
+  <img src="docs/how-it-works.svg" alt="Four detection sources feed a battery monitor that updates the menu bar" width="820">
 </p>
 
 | What | How |
 |---|---|
-| Finding devices | No scanning: macOS notifies the app when a device connects or disconnects. |
-| Logitech mouse waking up | The receiver reports it, so the battery is read the moment you move the mouse. A sleeping mouse costs nothing. |
+| Finding devices | No scanning: macOS notifies the app when hardware connects or disconnects. |
+| Devices waking up | Receivers report when a device wakes, so its battery is read right away. A sleeping device costs nothing. |
 | Periodic refresh | One timer a minute that macOS can batch with other work. Batteries are re-read every 5 minutes. |
 | After sleep | Everything is re-read a few seconds after the Mac wakes up. |
 | Measured | **0.0% CPU** idle, ~45 MB RAM. |
@@ -82,10 +85,10 @@ To see which devices GearBattery detects, run:
 /Applications/GearBattery.app/Contents/MacOS/GearBattery --probe
 ```
 
-The output looks like this:
+It prints one line per device:
 
 ```
-PRO X 2 | 46% | Logitech · wireless receiver
+<device name> | <level> | <connection>
 ```
 
 ## Uninstall
